@@ -2,6 +2,8 @@ import React from 'react';
 import {AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {Backdrop} from './components/Backdrop';
 import {Grain} from './components/Grain';
+import {Wipe, WIPE_LEN} from './components/Wipe';
+import {Sfx} from './components/Sfx';
 import {Stage} from './components/Stage';
 import {SceneShell} from './components/SceneShell';
 import {CLAMP, tween} from './anim';
@@ -15,6 +17,9 @@ import {Scene05} from './scenes/Scene05';
 import {Scene06} from './scenes/Scene06';
 import {Scene07} from './scenes/Scene07';
 import {Scene08} from './scenes/Scene08';
+
+// Scene cut points that get a diagonal wipe through black (chevron-angle band).
+const WIPE_CUTS = [SCENES.Scene03Arena.from, SCENES.Scene06Var.from, SCENES.Scene08Final.from];
 
 // VO windows (absolute composition frames) used to duck the music bed.
 const VO_WINDOWS = Object.values(SCENES).map((s) => [s.from + s.voFrom, s.from + s.voFrom + s.voFrames] as const);
@@ -84,6 +89,14 @@ export const Promo: React.FC = () => {
           </SceneShell>
         </Sequence>
       </Stage>
+
+      {/* Diagonal wipes at selected cuts, each with a whoosh on the sweep. */}
+      {WIPE_CUTS.map((at) => (
+        <React.Fragment key={at}>
+          <Wipe at={at} />
+          <Sfx name="whoosh" at={at - Math.round(WIPE_LEN / 2)} volume={0.6} />
+        </React.Fragment>
+      ))}
 
       {/* Voiceover: one clip per scene, starting exactly at its scene's VO frame. */}
       <Sequence from={SCENES.Scene01Noise.from + SCENES.Scene01Noise.voFrom}>

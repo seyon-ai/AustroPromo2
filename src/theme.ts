@@ -30,6 +30,6 @@ export const GLASS = {
 };
 
 // Placeholder domain for the final lockup. Change this one constant to swap it.
-export const SITE_URL = 'austroclash.com';
+export const SITE_URL = 'austroclash.in';
 
 export const TRACKING_HEADLINE = '-0.03em';

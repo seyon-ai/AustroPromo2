@@ -57,8 +57,21 @@ export const Scene01: React.FC = () => {
           const x = c.x + c.side * (1 - p) * 1500;
           const rot = c.rot + (1 - p) * 22 * c.side;
           return (
+            <React.Fragment key={c.i}>
+            {p < 0.98 ? (
+              <div
+                style={{
+                  position: 'absolute',
+                  left: x - 280 - c.side * 90 * (1 - p),
+                  top: c.y - 130,
+                  transform: `rotate(${rot}deg)`,
+                  opacity: 0.22 * (1 - p),
+                }}
+              >
+                <PostCard author={c.author} tone={c.tone} title={c.title} tag="Feed" width={560} />
+              </div>
+            ) : null}
             <div
-              key={c.i}
               style={{
                 position: 'absolute',
                 left: x - 280,
@@ -68,6 +81,7 @@ export const Scene01: React.FC = () => {
             >
               <PostCard author={c.author} tone={c.tone} title={c.title} tag="Feed" width={560} />
             </div>
+            </React.Fragment>
           );
         })}
       </AbsoluteFill>

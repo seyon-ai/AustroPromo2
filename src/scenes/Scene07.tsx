@@ -53,7 +53,7 @@ const StoreBeat: React.FC = () => {
 
 // Signature path: a hand-built loop, normalised to pathLength=1 for stroke-dashoffset.
 const SIG_PATH =
-  'M20 92 C40 22 62 14 74 60 S96 104 116 42 S146 18 158 70 S186 104 206 48 S238 22 252 66 S282 96 304 46 S324 24 330 40';
+  'M24 84 C34 40 46 22 52 40 C58 60 44 92 60 76 C74 62 74 36 86 50 C98 64 92 88 110 74 C124 62 126 34 140 40 C152 46 146 80 160 74 C172 68 176 50 192 56 C204 62 200 84 218 74 C232 66 240 40 256 46 C268 50 264 82 282 74 C294 68 300 52 318 58 C324 61 328 64 332 66';
 
 const SignatureBeat: React.FC = () => {
   const frame = useCurrentFrame();
@@ -160,14 +160,10 @@ const RefereeBeat: React.FC = () => {
         }}
       >
         <svg width={170} height={170} viewBox="0 0 120 120">
-          <path
-            d="M20 70 Q20 52 40 52 L78 52 Q98 42 102 30 L108 30 Q112 30 112 36 L112 60 Q112 78 92 82 L70 86 Q60 96 46 96 Q24 96 20 70 Z"
-            fill="none"
-            stroke={COLORS.text}
-            strokeWidth={5}
-            strokeLinejoin="round"
-          />
-          <circle cx="48" cy="72" r="6" fill={COLORS.text} />
+          <circle cx="50" cy="26" r="12" fill="none" stroke={COLORS.text} strokeWidth={5} />
+          <rect x="16" y="44" width="70" height="44" rx="20" fill="none" stroke={COLORS.text} strokeWidth={5} />
+          <path d="M86 56 L104 56 L104 76 L86 76" fill="none" stroke={COLORS.text} strokeWidth={5} strokeLinejoin="round" />
+          <circle cx="50" cy="66" r="8" fill={COLORS.text} />
         </svg>
       </GlassCard>
 
